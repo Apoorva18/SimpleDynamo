@@ -370,15 +370,7 @@ public class SimpleDynamoProvider extends ContentProvider {
 		final String myPort = String.valueOf((Integer.parseInt(portStr) * 2));
 		System.out.println("PORT!!!!!!::" + portStr);
 
-     /* int m=0;
-      File dir = getContext().getFilesDir();
-      while(Keystoshow.size()>0){
-          File file = new File(dir, Keystoshow.get(m));
-          boolean deleted = file.delete();
-          Keystoshow.remove(m);
-          m++;
-      }
-*/		recoverystatus = false;
+     	recoverystatus = false;
 		try {
 
 			ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
@@ -473,12 +465,7 @@ public class SimpleDynamoProvider extends ContentProvider {
 		// new Recoverme().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, "RECOVER ME", myPort);
 		new Recovernow().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, "RECOVERMENOW", myPort);
 
-		// String  msg= b.take();
-		//what = 26;
-		// String msg2 = new ClientTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, "RECOVER ME", myPort).get();
-
-
-		//  return msg + msg2;
+		
 
 
 		return false;
@@ -505,42 +492,7 @@ public class SimpleDynamoProvider extends ContentProvider {
 				Log.e("here", "indide selection");
 				//FileInputStream newFile = null;
 
-                /*
-                if ((genHash(selection).compareTo(genHash(portStr)) <= 0) && (genHash(selection).compareTo(genHash(pre)) <= 0) && (genHash(pre).compareTo(genHash(portStr)) > 0)) {
-                    Log.e("here it is", "working");
-                    newFile = getContext().openFileInput(selection);
-                    matrixCursor1 = new MatrixCursor(new String[]{"key", "value"});
-                    InputStreamReader inputStreamReader = new InputStreamReader(newFile);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    matrixCursor1.addRow(new String[]{selection, bufferedReader.readLine()});
-                    inputStreamReader.close();
-
-                    matrixCursor = matrixCursor1;
-
-                } else if ((genHash(selection).compareTo(genHash(portStr)) > 0) && (genHash(selection).compareTo(genHash(pre)) > 0) && (genHash(pre).compareTo(genHash(portStr)) > 0)) {
-                    Log.e("here it is", "working");
-                    newFile = getContext().openFileInput(selection);
-                    matrixCursor1 = new MatrixCursor(new String[]{"key", "value"});
-                    InputStreamReader inputStreamReader = new InputStreamReader(newFile);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    matrixCursor1.addRow(new String[]{selection, bufferedReader.readLine()});
-                    inputStreamReader.close();
-
-                    matrixCursor = matrixCursor1;
-
-                } else if ((genHash(selection).compareTo(genHash(pre)) > 0) && (genHash(selection).compareTo(genHash(portStr)) <= 0)) {
-                    Log.e("here it is", "working");
-                    newFile = getContext().openFileInput(selection);
-                    matrixCursor1 = new MatrixCursor(new String[]{"key", "value"});
-                    InputStreamReader inputStreamReader = new InputStreamReader(newFile);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    matrixCursor1.addRow(new String[]{selection, bufferedReader.readLine()});
-                    inputStreamReader.close();
-
-                    matrixCursor = matrixCursor1;
-
-                } */
-
+                
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 0) {
@@ -722,32 +674,7 @@ public class SimpleDynamoProvider extends ContentProvider {
 			return matrixCursor;
 		}
 		if (selection.contains("@")) {
-			/*
-			while(recover){
-				try {
-					sleep(25);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			File dir = getContext().getFilesDir();
-			try {
-				for (File file : dir.listFiles()) {
-					newFile = getContext().openFileInput(file.getName());
-					InputStreamReader isr = new InputStreamReader(newFile);
-					BufferedReader br = new BufferedReader(isr);
-					String val[] = br.readLine().split(" ");
-					matrixCursor.addRow(new String[]{file.getName(),val[0] });
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			//FileInputStream newFile = null;
-			//MatrixCursor matrixCursor = null;
-			//matrixCursor = new MatrixCursor(new String[]{"key", "value"});
-			*/
+			
 			while(!recoverystatus){
 				try {
 					sleep(20);
@@ -1447,92 +1374,7 @@ public class SimpleDynamoProvider extends ContentProvider {
 					}
 
 
-/*
-               String Porttosend = String.valueOf((Integer.parseInt(pre) * 2));
-
-             Socket socket = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),
-                     Integer.parseInt(Porttosend));
-
-
-
-             String m1 = "RECOVER ME"+"!"+"pre";
-             Log.e("Pre","Pre");
-             DataOutputStream d= new DataOutputStream(socket.getOutputStream());
-             d.writeBytes(m1 +"\n");
-             d.flush();
-             InputStreamReader isr = new InputStreamReader(socket.getInputStream());
-             BufferedReader br =new BufferedReader(isr);
-             String msg = br.readLine();
-             Log.e("TAGGED msg",msg);
-             socket.close();
-             //return msg;
-
-               String Porttosend2 = String.valueOf((Integer.parseInt(suc) * 2));
-
-               Socket socket2 = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),
-                       Integer.parseInt(Porttosend2));
-               Log.e("here","here");
-               String m2 = "RECOVER ME"+"!"+"suc";
-               DataOutputStream d2= new DataOutputStream(socket2.getOutputStream());
-               d2.writeBytes(m2 +"\n");
-               d2.flush();
-
-               //String h[ ]=msg.split("!");
-               //Log.e(TAG,"QWERTY:"+h[1]);
-               // Log.e(TAG,"RESULT"+h[0]);
-               //qwerty =h[1];
-               //result +=h[0];
-               InputStreamReader isr2 = new InputStreamReader(socket2.getInputStream());
-               BufferedReader br2 =new BufferedReader(isr2);
-               String msg2 = br2.readLine();
-               Log.e("TAGGED msg2",msg2);
-
-               return msg+ msg2;
-             /*String Porttosend2 = String.valueOf((Integer.parseInt(suc) * 2));
-
-             Socket socket2 = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),
-                     Integer.parseInt(Porttosend2));
-             Log.e("here","here");
-             String m2 = "RECOVER ME"+"!"+"suc";
-             DataOutputStream d2= new DataOutputStream(socket2.getOutputStream());
-             d.writeBytes(m2 +"\n");
-             d.flush();
-
-             //String h[ ]=msg.split("!");
-             //Log.e(TAG,"QWERTY:"+h[1]);
-            // Log.e(TAG,"RESULT"+h[0]);
-             //qwerty =h[1];
-             //result +=h[0];
-             InputStreamReader isr2 = new InputStreamReader(socket.getInputStream());
-             BufferedReader br2 =new BufferedReader(isr2);
-             String msg2 = br2.readLine();
-             //socket2.close();
-             String results =msg +msg2;
-             */
-
-
-				} else if (what == 26) {
-					String Porttosend2 = String.valueOf((Integer.parseInt(suc) * 2));
-
-					Socket socket2 = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),
-							Integer.parseInt(Porttosend2));
-					Log.e("here", "here");
-					String m2 = "RECOVER ME" + "!" + "suc";
-					DataOutputStream d2 = new DataOutputStream(socket2.getOutputStream());
-					d2.writeBytes(m2 + "\n");
-					d2.flush();
-
-					//String h[ ]=msg.split("!");
-					//Log.e(TAG,"QWERTY:"+h[1]);
-					// Log.e(TAG,"RESULT"+h[0]);
-					//qwerty =h[1];
-					//result +=h[0];
-					InputStreamReader isr2 = new InputStreamReader(socket2.getInputStream());
-					BufferedReader br2 = new BufferedReader(isr2);
-					String msg2 = br2.readLine();
-					Log.e("TAGGED msg2", msg2);
-					return msg2;
-				} else if (msgToSend.contains("query=")) {
+				}  else if (msgToSend.contains("query=")) {
 					synchronized (obj) {
 						/*
 						try{
